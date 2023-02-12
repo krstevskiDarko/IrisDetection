@@ -14,8 +14,12 @@ def detect_eyes(image):
 
     # Check if any eyes were detected
     if len(eyes) > 0:
+
         # Return the first detected eye region as an image
         x, y, w, h = eyes[0]
+        cv2.imshow("Eye detected", image[y:y + h, x:x + w])
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
         return image[y:y + h, x:x + w]
     else:
         return ""
@@ -52,7 +56,7 @@ def find_pupil_size(img):
 
     # Check if the aspect ratio of the bounding rectangle is approximately 1
     aspect_ratio = w / h
-    if aspect_ratio < 1.2 and aspect_ratio > 0.8:
+    if 1.2 > aspect_ratio > 0.8:
         # Calculate the center and diameter of the pupil
         center = (x + w // 2, y + h // 2)
         diameter = min(w, h)
@@ -60,13 +64,16 @@ def find_pupil_size(img):
         # Draw the circle on the image
         cv2.circle(img, center, diameter // 2, (0, 255, 0), 2)
 
-    # Show the image
-    cv2.imshow("Detected Pupil", img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+        # Print the diameter of the pupil
+        if diameter is not None:
+            print("Diameter of the pupil:", diameter)
 
-    # Print the diameter of the pupil
-    print("Diameter of the pupil:", diameter)
+        # Show the image
+        cv2.imshow("Detected Pupil", img)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+    else:
+        print("Pupil not found!")
 
 
 def detect_iris_shape(image):
@@ -175,8 +182,8 @@ def detect_and_compare_irises_sift(iris1, iris2):
         print('SIFT: The irises do not match.')
 
 
-img1 = cv2.imread('Images/Iris5.jpg')
-img2 = cv2.imread('Images/iris5.jpg')
+img1 = cv2.imread('Images/Face.jpg')
+img2 = cv2.imread('Images/iris2.jpg')
 
 eye1 = detect_eyes(img1)
 
@@ -189,3 +196,4 @@ if not isinstance(eye1, str) and not isinstance(eye2, str):
     detect_iris_shape(eye1)
 else:
     print("Eye not detected")
+
