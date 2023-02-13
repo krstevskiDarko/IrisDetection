@@ -134,10 +134,8 @@ def detect_and_compare_irises_orb(iris1, iris2):
     # Draw the matches and count the number of good matches
     img_matches = cv2.drawMatches(gray_iris1, kp1, gray_iris2, kp2, matches[:10], None,
                                   flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
+
     num_matches = len(matches)
-    cv2.imshow("matches ORB", img_matches)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
 
     print("ORB number of matches: " + str(num_matches))
 
@@ -145,6 +143,10 @@ def detect_and_compare_irises_orb(iris1, iris2):
         print('ORB: The irises match.')
     else:
         print('ORB: The irises do not match.')
+
+    cv2.imshow("matches ORB", img_matches)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 
 def detect_and_compare_irises_sift(iris1, iris2):
@@ -182,18 +184,15 @@ def detect_and_compare_irises_sift(iris1, iris2):
         print('SIFT: The irises do not match.')
 
 
-img1 = cv2.imread('Images/Face.jpg')
-img2 = cv2.imread('Images/iris2.jpg')
+img1 = cv2.imread('Images/Iris1.jpg')
+img2 = cv2.imread('Images/Iris2.jpg')
 
 eye1 = detect_eyes(img1)
 
 eye2 = detect_eyes(img2)
 
 if not isinstance(eye1, str) and not isinstance(eye2, str):
-    detect_and_compare_irises_orb(eye1, eye2)
     detect_and_compare_irises_sift(eye1, eye2)
-    find_pupil_size(eye1)
-    detect_iris_shape(eye1)
 else:
     print("Eye not detected")
 
