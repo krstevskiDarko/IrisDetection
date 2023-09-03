@@ -9,7 +9,8 @@ This student project implements an Iris Detection algorithm using OpenCV and Pyt
 Python 3.x
 OpenCV
 NumPy
-Usage
+
+# Usage
 
 Clone the repository: 
   git clone https://github.com/your-username/iris-detection.git
@@ -22,6 +23,6 @@ Run the algorithm:
   
 Follow on-screen instructions to input an image or use the webcam for real-time iris detection.
 
-#Authors
+# Authors
   Krstevski Darko
   Mihailova Georgina
