@@ -24,5 +24,5 @@ Run the algorithm:
 Follow on-screen instructions to input an image or use the webcam for real-time iris detection.
 
 # Authors
-  Krstevski Darko
+  Krstevski Darko,
   Mihailova Georgina
